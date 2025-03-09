@@ -46,7 +46,7 @@ struct Hero: Decodable {
         let fullName: String
         let alignment: String
         let firstAppearance: String
-        let publisher: String
+        let publisher: String?
     }
 
     struct Work: Decodable {

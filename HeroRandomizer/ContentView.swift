@@ -9,14 +9,18 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var viewModel: ViewModel
-
+    
     var body: some View {
         VStack {
             // Image
             AsyncImage(url: viewModel.selectedHero?.imageUrl) { phase in
                 switch phase {
                 case .empty:
-                    Color.teal.frame(height: 300)
+                    Image("noPhoto")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 300)
+                        .cornerRadius(10)
                 case .success(let image):
                     image
                         .resizable()
@@ -30,14 +34,14 @@ struct ContentView: View {
                 }
             }
             .padding(32)
-
+            
             // Details
             if let selectedHero = viewModel.selectedHero {
                 Text(selectedHero.name)
                     .font(.largeTitle)
                     .bold()
                     .padding(.bottom, 8)
-
+                
                 List(viewModel.heroDetails, id: \.self) { detail in
                     Text(detail)
                         .font(.body)
@@ -48,9 +52,9 @@ struct ContentView: View {
                     .font(.headline)
                     .foregroundColor(.gray)
             }
-
+            
             Spacer()
-
+            
             Button {
                 Task {
                     await viewModel.fetchHero()
@@ -68,6 +72,7 @@ struct ContentView: View {
             .padding(.bottom, 20)
         }
     }
+    
 }
 
 #Preview {

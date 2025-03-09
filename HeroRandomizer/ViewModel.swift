@@ -39,11 +39,11 @@ final class ViewModel: ObservableObject {
         guard let hero = hero else { return [] }
         
         return [
-            "Name: \(hero.name)",
+//            "Name: \(hero.name)",
             "Full Name: \(hero.biography.fullName)",
             "Alignment: \(hero.biography.alignment.capitalized)",
             "First Appearance: \(hero.biography.firstAppearance)",
-            "Publisher: \(hero.biography.publisher)",
+            "Publisher: \(hero.biography.publisher ?? "Unknown")",
             "Intelligence: \(hero.powerstats.intelligence)",
             "Strength: \(hero.powerstats.strength)",
             "Speed: \(hero.powerstats.speed)",
